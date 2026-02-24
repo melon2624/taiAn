@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰安資產管理有限公司 - 今日價格</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            max-width: 100%;
+            width: 100%;
+        }
+        .header {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        .title {
+            font-size: 2.2rem;
+            margin: 10px 0 5px;
+            font-weight: 600;
+        }
+        .price {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 20px 0;
+            line-height: 1;
+            min-height: 1.2em; /* 防止數字跳動時布局抖動 */
+        }
+        .unit {
+            font-size: 1.8rem;
+            color: #ccc;
+        }
+        .time {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin: 15px 0;
+        }
+        .info {
+            font-size: 1rem;
+            color: #ddd;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+        .shop-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        .whatsapp {
+            color: #25D366;
+            font-weight: bold;
+        }
+        .loading {
+            color: #888;
+            font-style: italic;
+        }
+        @media (max-width: 500px) {
+            .price { font-size: 5.5rem; }
+            .title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">泰安資產管理有限公司</div>
+
+    <div class="title">今日價格</div>
+
+    <div class="price" id="priceDisplay">載入中...</div>
+    <div class="unit">港幣 / 單位</div>
+
+    <div class="time" id="currentTime">當前時間：載入中...</div>
+
+    <div class="info">
+        <div class="shop-name">泰安資產管理有限公司</div>
+        泰安加密貨幣<br>
+        地址：旺角總統商業大廈 1 樓 150 店舖<br>
+        WhatsApp： <span class="whatsapp">+852 63782555</span><br>
+    </div>
+</div>
+
+<script>
+
+    function updateTime() {
+        const now = new Date();
+        const options = {
+            timeZone: 'Asia/Hong_Kong',
+            year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit', second: '2-digit',
+            hour12: false
+        };
+        const formatter = new Intl.DateTimeFormat('zh-HK', options);
+        const parts = formatter.formatToParts(now);
+
+        const year   = parts.find(p => p.type === 'year').value;
+        const month  = parts.find(p => p.type === 'month').value;
+        const day    = parts.find(p => p.type === 'day').value;
+        const hour   = parts.find(p => p.type === 'hour').value.padStart(2, '0');
+        const minute = parts.find(p => p.type === 'minute').value.padStart(2, '0');
+        const second = parts.find(p => p.type === 'second').value.padStart(2, '0');
+
+        document.getElementById('currentTime').textContent =
+            `當前時間：${year}-${month}-${day} ${hour}:${minute}:${second} (GMT+8)`;
+    }
+
+    // ==================== 價格更新 ====================
+    async function updatePrice() {
+        const display = document.getElementById('priceDisplay');
+        try {
+            // 本地測試用這個，上線時改成公網 IP
+           // const response = await fetch('http://127.0.0.1:9003/restapi/cai/usdtPrice');
+            // 上線版本：
+             const response = await fetch('http://159.75.120.93:9003/restapi/cai/usdtPrice');
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.status);
+            }
+
+            // 拿到原始文字
+            let priceText = await response.text();
+
+            // 清理：去掉頭尾空白、可能的引號
+            priceText = priceText.trim().replace(/^["']|["']$/g, '');
+
+            // 直接顯示原始內容（不管是 7.785、7.78、7.8 還是其他）
+            display.textContent = priceText || '—';
+
+            display.classList.remove('loading');
+        } catch (error) {
+            console.error('價格更新失敗:', error);
+            display.textContent = '更新失敗';
+            display.classList.add('loading');
+        }
+    }
+
+    // 初始化
+    updateTime();
+    updatePrice();           // 頁面載入立即獲取一次
+
+    // 定時更新
+    setInterval(updateTime, 1000);     // 時間每秒更新
+    setInterval(updatePrice, 5000);    // 價格每 5 秒更新一次
+</script>
+
+</body>
+</html>

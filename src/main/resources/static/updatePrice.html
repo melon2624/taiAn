@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更新 USDT 价格</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .container {
+      background: white;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 480px;
+    }
+    h1 {
+      text-align: center;
+      color: #1a73e8;
+      margin-bottom: 32px;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+    }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      box-sizing: border-box;
+    }
+    input:focus {
+      outline: none;
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 3px rgba(26,115,232,0.15);
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #1557b0;
+    }
+    button:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+    #message {
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 500;
+      min-height: 1.4em;
+    }
+    .success { color: #188038; }
+    .error   { color: #d93025; }
+    .loading { color: #fbbc05; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>更新 USDT 价格</h1>
+
+  <div class="form-group">
+    <label for="priceInput">当前价格 (HKD)</label>
+    <input type="number" id="priceInput" step="0.01" placeholder="例如 7.78" required>
+  </div>
+
+  <button id="saveBtn">保存</button>
+
+  <div id="message"></div>
+</div>
+
+<script>
+  const API_BASE = 'http://159.75.120.93:9003/restapi/cai';
+  const priceInput = document.getElementById('priceInput');
+  const saveBtn = document.getElementById('saveBtn');
+  const message = document.getElementById('message');
+
+  // 获取当前价格并回显
+  async function loadCurrentPrice() {
+    try {
+      message.textContent = '正在加载当前价格...';
+      message.className = 'loading';
+
+      const res = await fetch(`${API_BASE}/usdtPrice`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const price = await res.text();
+      const cleaned = price.trim().replace(/^"|"$/g, '');
+
+      if (cleaned && !isNaN(parseFloat(cleaned))) {
+        priceInput.value = parseFloat(cleaned).toFixed(2);
+        message.textContent = '';
+      } else {
+        priceInput.value = '';
+        message.textContent = '无法获取当前价格';
+        message.className = 'error';
+      }
+    } catch (err) {
+      console.error(err);
+      message.textContent = '加载失败，请稍后重试';
+      message.className = 'error';
+    }
+  }
+
+  // 保存价格
+  async function savePrice() {
+    const newPrice = priceInput.value.trim();
+
+    if (!newPrice || isNaN(parseFloat(newPrice))) {
+      message.textContent = '请输入有效的价格';
+      message.className = 'error';
+      return;
+    }
+
+    try {
+      saveBtn.disabled = true;
+      message.textContent = '正在保存...';
+      message.className = 'loading';
+
+      const res = await fetch(`${API_BASE}/usdtPrice?price=${encodeURIComponent(newPrice)}`, {
+        method: 'POST'
+      });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const result = await res.text();
+      const cleaned = result.trim().replace(/^"|"$/g, '');
+
+      if (cleaned === newPrice) {
+        message.textContent = `保存成功！当前价格：${cleaned}`;
+        message.className = 'success';
+      } else {
+        message.textContent = '保存失败，返回值不匹配';
+        message.className = 'error';
+      }
+    } catch (err) {
+      console.error(err);
+      message.textContent = '保存失败，请检查网络或服务器';
+      message.className = 'error';
+    } finally {
+      saveBtn.disabled = false;
+    }
+  }
+
+  // 事件绑定
+  saveBtn.addEventListener('click', savePrice);
+
+  // 页面加载时自动获取当前价格
+  loadCurrentPrice();
+</script>
+
+</body>
+</html>

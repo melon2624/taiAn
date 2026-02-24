@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>泰安加貨幣 - 實時價格</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      min-height: 100dvh;
+      background: #0a0a0a;
+      color: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(135deg, #0f0b03 0%, #000 100%);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      border-radius: 20px;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+              0 0 80px rgba(255,215,0,0.15),
+              inset 0 0 120px rgba(255,215,0,0.08);
+      text-align: center;
+    }
+
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: -50%;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 30%, rgba(255,215,0,0.12) 0%, transparent 60%);
+      opacity: 0.7;
+      animation: glow 10s ease-in-out infinite alternate;
+    }
+
+    .card::after {
+      background: radial-gradient(circle at 70% 80%, rgba(255,215,0,0.08) 0%, transparent 70%);
+      animation-delay: 5s;
+    }
+
+    @keyframes glow {
+      0% { transform: scale(1) translate(0,0); opacity: 0.6; }
+      100% { transform: scale(1.3) translate(10%, 15%); opacity: 0.9; }
+    }
+
+    .shop-title {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #ffeb3b;
+      text-shadow: 0 0 20px #ffd700, 0 0 40px #ffaa00;
+      margin-bottom: 4px;
+    }
+
+    .en-name {
+      font-size: 0.95rem;
+      color: #d4af37;
+      letter-spacing: 2px;
+      opacity: 0.85;
+      margin-bottom: 32px;
+    }
+
+    .main-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ffeb99;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-shadow: 0 0 15px rgba(255,235,153,0.6);
+    }
+
+    .price {
+      font-size: clamp(6.5rem, 22vw, 10rem);
+      font-weight: 900;
+      color: #ffd700;
+      line-height: 0.88;
+      letter-spacing: -4px;
+      text-shadow:
+              0 0 40px #ffd700,
+              0 0 80px #ffaa00,
+              0 0 120px #ff8800,
+              0 0 30px #ffd700 inset;
+      margin: 20px 0 12px;
+      background: linear-gradient(90deg, #ffeb3b, #ffd700, #ffaa00, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .unit {
+      font-size: 1.45rem;
+      color: #ffeb99;
+      font-weight: 600;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(255,235,153,0.5);
+    }
+
+    .update-title {
+      font-size: 1.15rem;
+      color: #d4af37;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .update-time {
+      font-size: 1.1rem;
+      color: #f0e68c;
+      font-weight: 500;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffd700;
+      margin: 32px 0 16px;
+      text-shadow: 0 0 15px #ffd700;
+    }
+
+    .address {
+      font-size: 1.1rem;
+      color: #e0d4a6;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .contact {
+      font-size: 1.2rem;
+      color: #ffeb99;
+      margin: 12px 0 24px;
+      font-weight: 600;
+    }
+
+    .whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 25px rgba(37,213,102,0.4);
+      transition: all 0.3s;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 35px rgba(37,213,102,0.6);
+    }
+
+    @media (max-width: 400px) {
+      .price { font-size: clamp(5rem, 18vw, 7.5rem); }
+      .card { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="shop-title">泰安加貨幣店</div>
+  <div class="en-name">TAI ON EXCHANGE</div>
+
+  <div class="main-title">今日實時價格</div>
+
+  <div class="price">7.778</div>
+  <div class="unit">港幣 / 單位</div>
+
+  <div class="update-title">更新時間</div>
+  <div class="update-time" id="time">2026-02-06 15:03:56 (GMT+8)</div>
+
+  <div class="section-title">泰安密貨幣</div>
+
+  <div class="address">
+    旺角總統商業大廈 1樓 150 店舖
+  </div>
+
+  <div class="contact">WhatsApp : +852 7878 7787</div>
+
+  <a href="https://wa.me/85278787787" class="whatsapp" target="_blank">
+    WhatsApp +852 7878 7787
+  </a>
+</div>
+
+<script>
+  function updateHKTime() {
+    const now = new Date().toLocaleString('zh-TW', {
+      timeZone: 'Asia/Hong_Kong',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    });
+    document.getElementById('time').textContent = now + ' (GMT+8)';
+  }
+  updateHKTime();
+  setInterval(updateHKTime, 1000);
+</script>
+
+</body>
+</html>
