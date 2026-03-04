@@ -128,7 +128,7 @@
             // 本地測試用這個，上線時改成公網 IP
            // const response = await fetch('http://127.0.0.1:9003/restapi/cai/usdtPrice');
             // 上線版本：
-             const response = await fetch('http://159.75.120.93:9003/restapi/cai/usdtPrice');
+             const response = await fetch('/restapi/cai/usdtPrice');
 
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.status);
