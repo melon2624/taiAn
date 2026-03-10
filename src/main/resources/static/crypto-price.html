@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰安資產 - 加密貨幣價格</title>
+    <link rel="stylesheet" href="/css/crypto-price.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-icon">T</div>
+            <span class="logo-text">泰安資產</span>
+        </div>
+
+        <!-- 左側：價格顯示區域 -->
+        <div class="left-section">
+            <div class="price-labels">
+                <div class="label label-symbol">幣種</div>
+                <div class="label label-sell">SELL 賣</div>
+                <div class="label label-buy">BUY 買</div>
+            </div>
+
+            <div class="price-list" id="priceList">
+                <div class="loading">
+                    <span class="spinner"></span>
+                    <span>正在加載價格數據...</span>
+                </div>
+            </div>
+
+            <button class="refresh-btn" onclick="fetchPrices()">刷新價格</button>
+            <div class="update-time" id="updateTime"></div>
+        </div>
+
+        <!-- 右側：圖片輪播區域 -->
+        <div class="right-section">
+            <div class="image-carousel" id="imageCarousel">
+                <div class="carousel-placeholder">加載圖片中...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/crypto-price.js"></script>
+</body>
+</html>

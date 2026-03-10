@@ -22,4 +22,9 @@ public class UIcontroller {
     public String updatePrice() {
         return "forward:/updatePrice.html";
     }
+
+    @GetMapping("/cryptoPrice")
+    public String toCryptoPricePage() {
+        return "forward:/crypto-price.html";   // 返回加密货币价格页面
+    }
 }
