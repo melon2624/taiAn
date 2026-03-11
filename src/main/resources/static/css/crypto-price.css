@@ -22,12 +22,12 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     padding: 40px 30px;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1200px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr 300px;
+    gap: 30px;
     grid-template-areas:
-        "left right";
+        "left info";
     position: relative;
 }
 
@@ -45,13 +45,7 @@ body {
     flex-direction: column;
 }
 
-.right-section {
-    grid-area: right;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .logo {
     position: absolute;
@@ -226,74 +220,173 @@ body {
     transform: scale(0.98);
 }
 
-/* 圖片輪播樣式 */
-.image-carousel {
-    position: relative;
-    width: 100%;
-    height: 500px;
+/* =============================================
+   信息面板：營業時間 + 聯絡我們
+   ============================================= */
+.info-section {
+    grid-area: info;
     background: #ffffff;
     border-radius: 15px;
     border: 2px solid #E8D4B8;
-    overflow: hidden;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* 標題 */
+.info-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #C8920A;
+    text-align: center;
+    letter-spacing: 3px;
+    margin-bottom: 2px;
+}
+
+.info-subtitle {
+    font-size: 10px;
+    color: #B8860B;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+    opacity: 0.75;
+}
+
+/* 營業時間區塊 */
+.business-hours-block {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1.5px solid #E8D4B8;
+}
+
+.hours-item {
+    background: #faf5f0;
+    border: 1.5px solid #E8D4B8;
+    border-left: 4px solid #27ae60;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    text-align: center;
+    transition: box-shadow 0.25s;
+}
+
+.hours-item:last-child {
+    margin-bottom: 0;
+}
+
+.hours-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.hours-day {
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.hours-time {
+    font-size: 18px;
+    font-weight: bold;
+    color: #27ae60;
+    letter-spacing: 2px;
+}
+
+.hours-closed {
+    border-left-color: #FF6B6B;
+}
+
+.hours-rest {
+    color: #FF6B6B;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* 聯絡我們區塊 */
+.contact-block {}
+
+.qr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.qr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.qr-img {
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #E8D4B8;
+}
+
+.qr-placeholder-box {
+    width: 68px;
+    height: 68px;
+    border-radius: 8px;
+    border: 2px solid #E8D4B8;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.carousel-image {
-    position: absolute;
-    width: 90%;
-    height: 90%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.carousel-image.active {
-    animation: slideInOut 6s ease-in-out forwards;
-}
-
-@keyframes slideInOut {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    10% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    40% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-}
-
-.carousel-placeholder {
-    color: #999;
-    font-size: 16px;
+    font-size: 11px;
+    color: #B8860B;
     text-align: center;
+    background: #faf5f0;
+    line-height: 1.5;
 }
 
-@media (max-width: 1200px) {
+.qr-label {
+    font-size: 9px;
+    color: #999;
+    text-align: center;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    text-transform: uppercase;
+}
+
+.phone-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #faf5f0;
+    border: 1.5px solid #E8D4B8;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.phone-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.phone-text {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    word-break: break-all;
+}
+
+/* =============================================
+   響應式佈局
+   ============================================= */
+@media (max-width: 900px) {
     .container {
         grid-template-columns: 1fr;
         grid-template-areas:
-            "header"
             "left"
-            "right";
-        gap: 30px;
-    }
-
-    .image-carousel {
-        height: 400px;
+            "info";
+        gap: 24px;
     }
 }
 
