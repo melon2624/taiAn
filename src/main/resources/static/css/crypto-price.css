@@ -10,7 +10,7 @@ body {
     font-family: "Arial", sans-serif;
     background: linear-gradient(135deg, #f5e6d3 0%, #ede0ce 100%);
     min-height: 100vh;
-    padding: 20px;
+    padding: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,12 +20,12 @@ body {
     background: #faf5f0;
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    padding: 40px 30px;
+    padding: 40px 48px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1500px;
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 30px;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
     grid-template-areas:
         "left info";
     position: relative;
@@ -392,7 +392,7 @@ body {
 
 @media (max-width: 600px) {
     .container {
-        padding: 20px;
+        padding: 20px 16px;
     }
 
     .logo-text {
@@ -422,9 +422,5 @@ body {
     .label {
         font-size: 14px;
         padding: 10px;
-    }
-
-    .image-carousel {
-        height: 300px;
     }
 }
