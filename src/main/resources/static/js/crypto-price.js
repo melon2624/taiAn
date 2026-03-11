@@ -197,6 +197,30 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
+/**
  * 每秒刷新顯示時間
  */
 setInterval(updateTimeDisplay, 1000);
+
+/**
+ * 打開二維碼彈窗
+ */
+function openQrModal(imageSrc, title, description) {
+    document.getElementById('qrModalImg').src = imageSrc;
+    document.getElementById('qrModalImg').alt = title;
+    document.getElementById('qrModalTitle').textContent = title;
+    document.getElementById('qrModalDesc').textContent = description;
+    document.getElementById('qrModalOverlay').classList.add('active');
+}
+
+/**
+ * 關閉二維碼彈窗
+ */
+function closeQrModal() {
+    document.getElementById('qrModalOverlay').classList.remove('active');
+}
+
+// 按 ESC 鍵關閉彈窗
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeQrModal();
+});

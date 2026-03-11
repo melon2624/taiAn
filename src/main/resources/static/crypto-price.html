@@ -61,15 +61,15 @@
                 <p class="info-subtitle">CONTACT US</p>
 
                 <div class="qr-grid">
-                    <div class="qr-item">
+                    <div class="qr-item" onclick="openQrModal('/img/whatsapp.jpg', 'WHATSAPP', '掃描此二維碼，通過 WhatsApp 聯繫我們，快速獲取最新匯率及交易服務。')">
                         <img src="/img/whatsapp.jpg" alt="WhatsApp QR Code" class="qr-img">
                         <span class="qr-label">WHATSAPP</span>
                     </div>
-                    <div class="qr-item">
+                    <div class="qr-item" onclick="openQrModal('/img/wechat.jpg', 'WECHAT 微信', '掃描此二維碼，通過微信聯繫我們，隨時隨地咨詢兌換業務。')">
                         <img src="/img/wechat.jpg" alt="WeChat QR Code" class="qr-img">
                         <span class="qr-label">WECHAT<br><small>微信</small></span>
                     </div>
-                    <div class="qr-item">
+                    <div class="qr-item" onclick="openQrModal('/img/telegram.jpg', 'TELEGRAM', '掃描此二維碼，通過 Telegram 聯繫我們，獲取實時行情及加密貨幣兌換服務。')">
                         <img src="/img/telegram.jpg" alt="Telegram QR Code" class="qr-img">
                         <span class="qr-label">TELEGRAM</span>
                     </div>
@@ -80,6 +80,16 @@
                     <span class="phone-text">電話(WhatsApp): +852 63782555</span>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div class="qr-modal-overlay" id="qrModalOverlay" onclick="closeQrModal()">
+        <div class="qr-modal" onclick="event.stopPropagation()">
+            <button class="qr-modal-close" onclick="closeQrModal()">✕</button>
+            <img class="qr-modal-img" id="qrModalImg" src="" alt="">
+            <div class="qr-modal-title" id="qrModalTitle"></div>
+            <div class="qr-modal-desc" id="qrModalDesc"></div>
         </div>
     </div>
 
