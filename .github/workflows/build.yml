@@ -27,5 +27,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: taiAn
-          path: target/taiAn-1.0-SNAPSHOT.jar
+          path: target/taiAn.jar
           if-no-files-found: error
