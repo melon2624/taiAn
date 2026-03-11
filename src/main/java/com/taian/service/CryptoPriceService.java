@@ -1,5 +1,8 @@
 package com.taian.service;
 
+import cn.hutool.http.HttpUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.taian.bean.CryptoPrice;
 import com.taian.bean.CryptoPriceData;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -37,28 +40,42 @@ public class CryptoPriceService {
         }
     }
 
+    private static final String BINANCE_API = "https://fapi.binance.com/fapi/v1/ticker/price?symbol=";
+
     /**
-     * 更新加密货币价格数据
-     * 此方法由调用币安API的代码来实现
-     * 
-     * 用户需要在此方法中调用币安开放API获取以下交易对的价格：
-     * - BTCUSDT (BTC/USDT)
-     * - ETHUSDT (ETH/USDT)
-     * - TRXUSDT (TRX/USDT)
-     * - BNBUSDT (BNB/USDT)
-     * 
-     * 然后调用 updatePriceWithSpread() 方法来计算买卖价
+     * 调用币安合约行情接口获取单个币种价格
+     *
+     * @param symbol 交易对，如 BTCUSDT
+     * @return 价格字符串，失败返回 null
+     */
+    private String fetchPriceFromBinance(String symbol) {
+        try {
+            String response = HttpUtil.get(BINANCE_API + symbol, 5000);
+            JSONObject json = JSONUtil.parseObj(response);
+            return json.getStr("price");
+        } catch (Exception e) {
+            System.err.println("获取 " + symbol + " 价格失败: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * 更新所有币种的价格数据，依次调用币安接口
      */
     private void updateCryptoPriceDataFromBinance() {
-        // TODO: 用户实现币安API调用逻辑
-        // 示例代码（用户需要实现）：
-        // String btcMarketPrice = binanceAPI.getPrice("BTCUSDT");
-        // updatePriceWithSpread("BTC", btcMarketPrice);
-        // String ethMarketPrice = binanceAPI.getPrice("ETHUSDT");
-        // updatePriceWithSpread("ETH", ethMarketPrice);
-        // ... 依此类推
-        
-        System.out.println("币安API调用逻辑待实现...");
+        String[][] pairs = {
+            {"BTCUSDT", "BTC"},
+            {"ETHUSDT", "ETH"},
+            {"TRXUSDT", "TRX"},
+            {"BNBUSDT", "BNB"}
+        };
+        for (String[] pair : pairs) {
+            String price = fetchPriceFromBinance(pair[0]);
+            if (price != null) {
+                updatePriceWithSpread(pair[1], price);
+                System.out.println("更新 " + pair[1] + " 价格: " + price);
+            }
+        }
     }
 
     /**
