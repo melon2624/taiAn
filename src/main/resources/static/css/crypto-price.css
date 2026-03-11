@@ -24,7 +24,7 @@ body {
     width: 100%;
     max-width: 1500px;
     display: grid;
-    grid-template-columns: 1fr 340px;
+    grid-template-columns: 1fr 420px;
     gap: 40px;
     grid-template-areas:
         "left info";
@@ -311,8 +311,8 @@ body {
 .qr-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 14px;
+    gap: 12px;
+    margin-bottom: 16px;
 }
 
 .qr-item {
@@ -323,8 +323,8 @@ body {
 }
 
 .qr-img {
-    width: 68px;
-    height: 68px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     border-radius: 8px;
     border: 2px solid #E8D4B8;
@@ -346,7 +346,7 @@ body {
 }
 
 .qr-label {
-    font-size: 9px;
+    font-size: 11px;
     color: #999;
     text-align: center;
     letter-spacing: 0.5px;
