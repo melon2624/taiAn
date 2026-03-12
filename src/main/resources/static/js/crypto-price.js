@@ -4,12 +4,6 @@ const API_BASE_URL = '/restapi/cai';
 // 币种列表
 const CRYPTOCURRENCIES = ['BTC', 'ETH', 'TRX', 'BNB'];
 
-// 图片列表 (会轮流切换)
-const IMAGES = ['/img/1.png', '/img/2.png'];
-
-// 当前显示的图片索引
-let currentImageIndex = 0;
-
 /**
  * 获取所有加密货币价格
  */
@@ -144,53 +138,10 @@ function updateTimeDisplay() {
 }
 
 /**
- * 初始化圖片輪播
- */
-function initImageCarousel() {
-    const carousel = document.getElementById('imageCarousel');
-    
-    // 清空佔位符
-    carousel.innerHTML = '';
-    
-    // 創建圖片元素
-    IMAGES.forEach((imgPath, index) => {
-        const img = document.createElement('img');
-        img.src = imgPath;
-        img.alt = `Image ${index + 1}`;
-        img.className = 'carousel-image';
-        carousel.appendChild(img);
-    });
-    
-    // 啟動輪播
-    startImageCarousel();
-}
-
-/**
- * 啟動圖片輪播
- */
-function startImageCarousel() {
-    const images = document.querySelectorAll('.carousel-image');
-    
-    if (images.length === 0) return;
-    
-    setInterval(() => {
-        // 移除所有 active 類
-        images.forEach(img => img.classList.remove('active'));
-        
-        // 添加當前圖片的 active 類，觸發動畫
-        images[currentImageIndex].classList.add('active');
-        
-        // 更新索引
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-    }, 6000); // 6秒切換一次
-}
-
-/**
  * 頁面加載時初始化
  */
 document.addEventListener('DOMContentLoaded', function() {
     fetchPrices();
-    initImageCarousel();
     
     // 每10分鐘自動刷新一次價格
     setInterval(fetchPrices, 600000);

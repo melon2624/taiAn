@@ -6,11 +6,18 @@
     box-sizing: border-box;
 }
 
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: "Arial", sans-serif;
     background: linear-gradient(135deg, #f5e6d3 0%, #ede0ce 100%);
     min-height: 100vh;
-    padding: 24px;
+    width: 100%;
+    overflow-x: hidden;
+    padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,6 +36,8 @@ body {
     grid-template-areas:
         "left info";
     position: relative;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .header {
@@ -43,6 +52,7 @@ body {
     grid-area: left;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 
@@ -92,6 +102,7 @@ body {
     margin-top: 60px;
     text-align: center;
     padding: 0 25px;
+    min-width: 0;
 }
 
 .label {
@@ -116,6 +127,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    min-width: 0;
 }
 
 .price-item {
@@ -128,6 +140,7 @@ body {
     border: 2px solid #E8D4B8;
     transition: all 0.3s ease;
     align-items: center;
+    min-width: 0;
 }
 
 .price-item:hover {
@@ -140,6 +153,7 @@ body {
     font-weight: bold;
     color: #333;
     text-align: center;
+    min-width: 0;
 }
 
 .sell-price {
@@ -147,6 +161,8 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #FF6B6B;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .buy-price {
@@ -154,6 +170,8 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #27ae60;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .loading {
@@ -209,6 +227,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
+    max-width: 100%;
 }
 
 .refresh-btn:hover {
@@ -233,6 +252,7 @@ body {
     flex-direction: column;
     gap: 0;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    min-width: 0;
 }
 
 /* 標題 */
@@ -310,9 +330,10 @@ body {
 
 .qr-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
     margin-bottom: 16px;
+    min-width: 0;
 }
 
 .qr-item {
@@ -321,6 +342,7 @@ body {
     align-items: center;
     gap: 6px;
     cursor: pointer;
+    min-width: 0;
 }
 
 .qr-item:hover .qr-img {
@@ -330,8 +352,10 @@ body {
 }
 
 .qr-img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    max-width: 100px;
+    aspect-ratio: 1 / 1;
+    height: auto;
     object-fit: cover;
     border-radius: 8px;
     border: 2px solid #E8D4B8;
@@ -455,6 +479,7 @@ body {
     border: 1.5px solid #E8D4B8;
     border-radius: 8px;
     padding: 10px 12px;
+    min-width: 0;
 }
 
 .phone-icon {
@@ -467,25 +492,37 @@ body {
     color: #555;
     letter-spacing: 0.3px;
     line-height: 1.4;
-    word-break: break-all;
+    overflow-wrap: anywhere;
 }
 
 /* =============================================
    響應式佈局
    ============================================= */
 @media (max-width: 900px) {
+    body {
+        align-items: flex-start;
+    }
+
     .container {
         grid-template-columns: 1fr;
         grid-template-areas:
             "left"
             "info";
         gap: 24px;
+        max-width: min(100%, 100vw - 48px);
     }
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+    }
+
     .container {
-        padding: 20px 16px;
+        width: min(100%, 100vw - 24px);
+        padding: 20px 14px;
+        gap: 20px;
+        border-radius: 18px;
     }
 
     .logo-text {
@@ -499,21 +536,49 @@ body {
     }
 
     .price-item {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 15px;
+        grid-template-columns: minmax(72px, 0.9fr) repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        padding: 18px 14px;
     }
 
     .symbol, .sell-price, .buy-price {
         text-align: center;
     }
 
+    .symbol {
+        font-size: 20px;
+    }
+
+    .sell-price, .buy-price {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
     .price-labels {
         margin-bottom: 20px;
+        margin-top: 72px;
+        gap: 8px;
+        padding: 0;
     }
 
     .label {
         font-size: 14px;
         padding: 10px;
+    }
+
+    .info-section {
+        padding: 20px 12px;
+    }
+
+    .hours-item {
+        padding: 10px;
+    }
+
+    .qr-grid {
+        gap: 8px;
+    }
+
+    .qr-img {
+        max-width: 84px;
     }
 }
