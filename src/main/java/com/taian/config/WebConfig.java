@@ -2,6 +2,7 @@ package com.taian.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -9,6 +10,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        // Root path redirect, keeps behavior consistent even without nginx rewrite rules.
+        registry.addRedirectViewController("/", "/taian/price");
+    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
