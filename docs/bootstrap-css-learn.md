@@ -1,7 +1,8 @@
 # Bootstrap + CSS 快速学习指南
 
 > 泰安项目（taiAn）配套文档 · 约 1～2 周上手  
-> 当前分支建议：`bootstrap-learn`
+> 当前分支建议：`bootstrap-learn`  
+> 学完本文档后 → [全栈路线（前端专项）](./fullstack-frontend-roadmap.md)（JS + Vue，后端已会可跳过）
 
 ---
 
@@ -636,4 +637,6 @@ bg-primary, text-white, text-muted
 ---
 
 *文档路径：`docs/bootstrap-css-learn.md`*  
-*配合项目路径：`src/main/resources/static/learn/`*
+*配合项目路径：`src/main/resources/static/learn/`*  
+*下一步：[fullstack-frontend-roadmap.md](./fullstack-frontend-roadmap.md)*  
+*更远（可选）：[uni-app-mobile-roadmap.md](./uni-app-mobile-roadmap.md)*
