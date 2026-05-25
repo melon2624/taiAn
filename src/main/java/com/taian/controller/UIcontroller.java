@@ -13,13 +13,14 @@ public class UIcontroller {
     public String toPricePage() {
         return "forward:/price.html";   // 强制转发到静态资源处理器
     }
-  /*  @GetMapping("/price2")
-    public String toPricePage2() {
-        return "forward:/price2.html";   // 强制转发到静态资源处理器
-    }*/
-
     @GetMapping("/updatePrice")
     public String updatePrice() {
         return "forward:/updatePrice.html";
+    }
+
+    /** Bootstrap/CSS 学习中心入口 */
+    @GetMapping("/learn")
+    public String toLearnHub() {
+        return "forward:/learn/index.html";
     }
 }

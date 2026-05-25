@@ -1,0 +1,61 @@
+/* ============================================================
+   Day 6+ 自定义样式 — 覆盖/补充 Bootstrap
+   引入顺序：Bootstrap CDN 之后引入本文件
+   ============================================================ */
+
+:root {
+  --brand-primary: #2563eb;
+  --sidebar-bg: #212529;
+  --sidebar-hover: #343a40;
+}
+
+/* 侧边栏 */
+.sidebar {
+  min-height: 100vh;
+  background: var(--sidebar-bg);
+  padding-top: 16px;
+}
+
+.sidebar .brand {
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 16px 24px;
+  font-size: 1.1rem;
+}
+
+.sidebar a {
+  color: #adb5bd;
+  text-decoration: none;
+  display: block;
+  padding: 10px 16px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background: var(--sidebar-hover);
+  color: #fff;
+}
+
+/* 统计卡片数字 */
+.stat-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--brand-primary);
+}
+
+/* 价格页推荐卡片 */
+.pricing-card-featured {
+  border: 2px solid var(--brand-primary) !important;
+  transform: scale(1.03);
+}
+
+/* 练习提示 */
+.learn-banner {
+  background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+  border-bottom: 1px solid #dbeafe;
+  padding: 8px 0;
+  font-size: 0.85rem;
+  color: #1e40af;
+  text-align: center;
+}
