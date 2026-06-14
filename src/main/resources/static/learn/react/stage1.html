@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阶段一 · React 基础入门</title>
+  <link href="/learn/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/learn/css/custom.css" rel="stylesheet">
+  <link href="/learn/css/react-learn.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/learn/react/index.html">React 路线</a>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link active" href="/learn/react/stage1.html">阶段一</a>
+        <a class="nav-link" href="/learn/react/stage2.html">阶段二</a>
+        <a class="nav-link" href="/learn/react/admin.html">练习项目</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="stage-hero">
+    <div class="container">
+      <span class="stage-label">阶段一</span>
+      <h1>React 基础入门：先把页面写活</h1>
+      <p>目标：你能看懂并修改 <code>/learn/js/react-admin-demo.jsx</code>，能用 React 写列表、按钮事件、输入框和简单表单。</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <section class="timeline">
+      <article class="timeline-item">
+        <h2>1. JSX：在 JavaScript 里写页面结构</h2>
+        <p>JSX 看起来像 HTML，但它本质是 JavaScript 表达式。你需要先习惯两个差异：写 class 要用 <code>className</code>，写动态内容要用 <code>{}</code>。</p>
+        <pre><code>function Hello() {
+  const name = "张三";
+  return &lt;h1 className="h3"&gt;你好，{name}&lt;/h1&gt;;
+}</code></pre>
+        <p class="mentor-note">经验：刚学时不要纠结 JSX 原理，先把它当作“更强的 HTML 模板”。等你能写组件了，再回头看编译原理更容易懂。</p>
+      </article>
+
+      <article class="timeline-item">
+        <h2>2. 组件：把页面拆成函数</h2>
+        <p>React 页面不是一大段 HTML，而是一堆组件拼起来。比如后台页面可以拆成 <code>Sidebar</code>、<code>MetricCard</code>、<code>UserForm</code>、<code>UserTable</code>。</p>
+        <pre><code>function MetricCard({ label, value }) {
+  return (
+    &lt;div className="metric-card"&gt;
+      &lt;div&gt;{label}&lt;/div&gt;
+      &lt;strong&gt;{value}&lt;/strong&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        <p class="mentor-note">经验：组件不是越碎越好。先按页面区域拆，重复出现两三次后再抽成通用组件。</p>
+      </article>
+
+      <article class="timeline-item">
+        <h2>3. props：父组件把数据传给子组件</h2>
+        <p><code>props</code> 就像 Java 方法参数。父组件决定数据，子组件负责显示。</p>
+        <pre><code>&lt;MetricCard label="总用户" value={users.length} /&gt;</code></pre>
+        <p class="mentor-note">经验：子组件尽量少知道业务全局，只拿自己要显示的数据。这样组件更好改，也更不容易牵一发动全身。</p>
+      </article>
+
+      <article class="timeline-item">
+        <h2>4. useState：让页面记住变化</h2>
+        <p>HTML 页面刷新前通常是静态的，React 页面靠状态变活。搜索词、表单输入、用户列表、当前筛选状态都可以放进 <code>useState</code>。</p>
+        <pre><code>const [keyword, setKeyword] = useState("");
+
+&lt;input
+  value={keyword}
+  onChange={(event) =&gt; setKeyword(event.target.value)}
+/&gt;</code></pre>
+        <p class="mentor-note">经验：不要直接改状态里的数组或对象。用新数组、新对象替换旧值，比如 <code>setUsers([...users, newUser])</code>。</p>
+      </article>
+
+      <article class="timeline-item">
+        <h2>5. 事件：用户操作触发数据变化</h2>
+        <p>按钮点击、输入框变化、表单提交，本质都是事件。React 的思路是：事件里改数据，数据变化后页面自动重新渲染。</p>
+        <pre><code>function removeUser(id) {
+  setUsers(users.filter((user) =&gt; user.id !== id));
+}</code></pre>
+        <p class="mentor-note">经验：事件函数命名尽量表达意图，比如 <code>createUser</code>、<code>removeUser</code>、<code>toggleStatus</code>，不要都叫 <code>handleClick</code>。</p>
+      </article>
+
+      <article class="timeline-item">
+        <h2>6. 列表渲染：map、filter 是后台系统基本功</h2>
+        <p>表格来自数组。搜索和筛选来自 <code>filter</code>，渲染来自 <code>map</code>。</p>
+        <pre><code>{users.map((user) =&gt; (
+  &lt;tr key={user.id}&gt;
+    &lt;td&gt;{user.name}&lt;/td&gt;
+  &lt;/tr&gt;
+))}</code></pre>
+        <p class="mentor-note">经验：<code>key</code> 优先用稳定 ID，不要优先用数组下标。后台表格以后会删除、排序、分页，下标容易出问题。</p>
+      </article>
+
+      <article class="timeline-item">
+        <h2>7. 表单：受控组件是 React 的基本姿势</h2>
+        <p>输入框的值来自状态，输入变化时再更新状态，这叫受控组件。它一开始麻烦，但后面做校验、提交、重置会很清楚。</p>
+        <pre><code>const [form, setForm] = useState({ name: "", role: "编辑" });
+
+setForm({ ...form, name: event.target.value });</code></pre>
+        <p class="mentor-note">经验：表单字段少时可以用一个对象管理；字段很多时再考虑拆组件或引入表单库。</p>
+      </article>
+    </section>
+
+    <section class="practice-panel">
+      <h2 class="h4">阶段一练习任务</h2>
+      <ol>
+        <li>打开 <code>/learn/react/admin.html</code>，先点搜索、新增、删除、切换状态。</li>
+        <li>打开 <code>/learn/js/react-admin-demo.jsx</code>，找到 <code>initialUsers</code>，新增一条默认用户。</li>
+        <li>把 <code>MetricCard</code> 的“待审核”改成“停用用户”，自己写统计逻辑。</li>
+        <li>给新增表单加一个“手机号”字段，并显示到表格里。</li>
+        <li>把搜索范围从用户名/角色/部门扩展到手机号。</li>
+      </ol>
+    </section>
+  </main>
+
+  <script src="/learn/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

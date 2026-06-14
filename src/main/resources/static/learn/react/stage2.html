@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阶段二 · 管理系统实战</title>
+  <link href="/learn/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/learn/css/custom.css" rel="stylesheet">
+  <link href="/learn/css/react-learn.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/learn/react/index.html">React 路线</a>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/learn/react/stage1.html">阶段一</a>
+        <a class="nav-link active" href="/learn/react/stage2.html">阶段二</a>
+        <a class="nav-link" href="/learn/react/admin.html">练习项目</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="stage-hero stage-hero-green">
+    <div class="container">
+      <span class="stage-label">阶段二</span>
+      <h1>管理系统实战：把功能写成可维护页面</h1>
+      <p>目标：能独立写一个常见后台模块，包括页面布局、工具栏、表格、表单、筛选、状态、接口预留。</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <section class="row g-4">
+      <div class="col-lg-6">
+        <div class="lesson-card p-4">
+          <h2 class="h5">1. 后台页面骨架</h2>
+          <p>后台通常不是一个孤立页面，而是固定结构：侧边栏、顶部区域、内容区、表格区。</p>
+          <ul>
+            <li><code>Sidebar</code>：菜单和模块入口</li>
+            <li><code>main</code>：当前业务页面</li>
+            <li><code>MetricCard</code>：关键统计</li>
+            <li><code>Toolbar</code>：搜索、筛选、批量操作</li>
+          </ul>
+          <p class="mentor-note">经验：后台系统最怕页面结构乱。先固定布局，再填功能，别一边写业务一边随手堆 HTML。</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="lesson-card p-4">
+          <h2 class="h5">2. 数据流：谁拥有数据，谁负责改</h2>
+          <p>当前练习里，<code>AdminApp</code> 保存用户数组，子组件通过 props 展示数据，通过回调通知父组件修改。</p>
+          <pre><code>&lt;UserForm onCreate={createUser} /&gt;
+&lt;UserTable users={filteredUsers} onRemove={removeUser} /&gt;</code></pre>
+          <p class="mentor-note">经验：先让页面顶层组件管理数据。等状态真的跨很多页面共享时，再考虑状态管理库。</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="lesson-card p-4">
+          <h2 class="h5">3. 搜索和筛选</h2>
+          <p>搜索词和筛选条件是状态，最终列表是计算结果。不要把筛选后的列表再单独存一份状态，容易不同步。</p>
+          <pre><code>const filteredUsers = users.filter((user) =&gt; {
+  return hitKeyword && hitStatus;
+});</code></pre>
+          <p class="mentor-note">经验：能从已有数据算出来的值，优先计算，不要重复存。重复状态是很多 bug 的源头。</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="lesson-card p-4">
+          <h2 class="h5">4. CRUD 操作</h2>
+          <p>管理系统绕不开增删改查。现在练习里已经有新增、删除、状态切换，后续可以加编辑弹窗。</p>
+          <ul>
+            <li>新增：表单提交后 <code>setUsers([user, ...users])</code></li>
+            <li>删除：用 <code>filter</code> 去掉目标 ID</li>
+            <li>修改：用 <code>map</code> 找到目标 ID 后替换</li>
+          </ul>
+          <p class="mentor-note">经验：修改数组时不要直接 <code>push</code> 或改原对象。React 更喜欢“给我一个新数组”。</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="lesson-card p-4">
+          <h2 class="h5">5. 加载、空数据、错误</h2>
+          <p>真实项目里，页面不只有“有数据”。你要设计四种状态：加载中、空数据、加载失败、正常数据。</p>
+          <ul>
+            <li><code>loading</code>：显示加载提示</li>
+            <li><code>error</code>：显示失败原因和重试按钮</li>
+            <li><code>users.length === 0</code>：显示空状态</li>
+            <li>正常数据：显示表格</li>
+          </ul>
+          <p class="mentor-note">经验：商业项目的质感经常不在功能本身，而在这些边界状态有没有处理。</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="lesson-card p-4">
+          <h2 class="h5">6. 接口预留思维</h2>
+          <p>现在用本地数组，下一步可以替换成 Spring Boot 接口。页面结构不要依赖“假数据写死”。</p>
+          <pre><code>async function loadUsers() {
+  const response = await fetch("/restapi/users");
+  const data = await response.json();
+  setUsers(data);
+}</code></pre>
+          <p class="mentor-note">经验：先定义前端需要的数据结构，再和后端对齐接口。不要让页面到处适配奇怪字段。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="practice-panel mt-5">
+      <h2 class="h4">阶段二实战任务</h2>
+      <ol>
+        <li>给用户表格新增“编辑”按钮，点击后把用户信息填回表单。</li>
+        <li>新增 <code>editingId</code> 状态：有值时表单按钮显示“保存”，没有值时显示“新增”。</li>
+        <li>给删除按钮加 <code>confirm</code> 确认，避免误删。</li>
+        <li>增加一个“部门筛选”下拉框，和状态筛选一起生效。</li>
+        <li>增加加载状态：页面打开时先显示 500ms 的“加载中”。</li>
+        <li>把用户数据保存到 <code>localStorage</code>，刷新页面后不丢失。</li>
+      </ol>
+      <a class="btn btn-success" href="/learn/react/admin.html">打开管理系统练习页</a>
+    </section>
+  </main>
+
+  <script src="/learn/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

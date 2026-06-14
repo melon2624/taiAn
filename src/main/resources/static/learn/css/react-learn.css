@@ -1,0 +1,190 @@
+:root {
+  --react-brand: #2563eb;
+  --react-ink: #111827;
+  --react-muted: #64748b;
+  --react-line: #e5e7eb;
+  --react-bg: #f8fafc;
+}
+
+body {
+  background: var(--react-bg);
+}
+
+.react-shell {
+  min-height: 100vh;
+}
+
+.react-sidebar {
+  background: #111827;
+  color: #e5e7eb;
+  min-height: 100vh;
+  padding: 20px 16px;
+}
+
+.react-sidebar .brand {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.react-sidebar a {
+  color: #cbd5e1;
+  display: block;
+  padding: 10px 12px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.react-sidebar a.active,
+.react-sidebar a:hover {
+  background: #1f2937;
+  color: #fff;
+}
+
+.lesson-card {
+  border: 1px solid var(--react-line);
+  border-radius: 8px;
+  background: #fff;
+  height: 100%;
+}
+
+.stage-card {
+  border: 1px solid var(--react-line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 24px;
+}
+
+.stage-card-focus {
+  border-color: #86efac;
+  box-shadow: 0 10px 28px rgba(22, 101, 52, 0.12);
+}
+
+.stage-label {
+  display: inline-block;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #075985;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+
+.stage-hero {
+  background: #2563eb;
+  color: #fff;
+  padding: 56px 0;
+}
+
+.stage-hero code {
+  color: #eff6ff;
+}
+
+.stage-hero-green {
+  background: #15803d;
+}
+
+.stage-hero-muted {
+  background: #334155;
+}
+
+.timeline {
+  display: grid;
+  gap: 20px;
+}
+
+.timeline-item {
+  border: 1px solid var(--react-line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 24px;
+}
+
+.timeline-item pre,
+.lesson-card pre {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+}
+
+.mentor-note {
+  border-left: 4px solid #2563eb;
+  background: #eff6ff;
+  color: #1e3a8a;
+  padding: 10px 12px;
+  margin-bottom: 0;
+}
+
+.practice-panel {
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  background: #f0fdf4;
+  padding: 24px;
+}
+
+.lesson-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #1d4ed8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.admin-page {
+  color: var(--react-ink);
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.metric-card {
+  border: 1px solid var(--react-line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 18px;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--react-brand);
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.status-active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-disabled {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+@media (max-width: 767px) {
+  .react-sidebar {
+    min-height: auto;
+  }
+}

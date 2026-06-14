@@ -13,6 +13,8 @@ def w(rel, html):
 
 BS = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 JS = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+LOCAL_BS = "/learn/vendor/bootstrap/css/bootstrap.css"
+LOCAL_JS = "/learn/vendor/bootstrap/js/bootstrap.bundle.js"
 
 def bs_head(title):
     return f"""<!DOCTYPE html>
@@ -162,7 +164,16 @@ w("day2/responsive.html", f"""<!DOCTYPE html>
 """)
 
 # --- day3 ---
-w("day3/index.html", bs_head("Day 3 · Bootstrap 入门") + f"""
+w("day3/index.html", f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 3 · Bootstrap 入门</title>
+  <link href="{LOCAL_BS}" rel="stylesheet">
+  <link href="/learn/css/custom.css" rel="stylesheet">
+</head>
+<body>""" + f"""
   <{D} class="alert alert-info m-3 mb-0"><strong>Day 3 任务：</strong> 补全下方 TODO；理解 navbar、container、btn、py-5 等类名。</{D}>
 """ + nav_links() + f"""
   <section class="bg-primary text-white py-5">
@@ -172,7 +183,7 @@ w("day3/index.html", bs_head("Day 3 · Bootstrap 入门") + f"""
       <!-- TODO: 添加一个大按钮 btn btn-light btn-lg -->
     </{D}>
   </section>
-""" + bs_foot())
+""" + f'  <script src="{LOCAL_JS}"></script>\n</body>\n</html>\n')
 
 # --- day4 ---
 w("day4/features.html", bs_head("Day 4 · 栅格与卡片") + f"""
