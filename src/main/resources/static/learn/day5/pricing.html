@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 5 · 价格页</title>
+  <link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/learn/css/custom.css" rel="stylesheet">
+</head>
+<body>
+  <div class="alert alert-info m-3 mb-0"><strong>Day 5 任务：</strong> 完成三档价格卡片；中间档加 badge「推荐」。</div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/learn/index.html">CloudNote</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/learn/index.html">学习中心</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/final/index.html">首页</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/final/pricing.html">价格</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/final/dashboard.html">后台</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="container py-5">
+    <h2 class="text-center mb-5">选择你的方案</h2>
+    <div class="row g-4 justify-content-center">
+      <!-- TODO: 三列 col-md-4，每列一张 card，含价格、ul 功能列表、按钮 -->
+      <div class="col-12 text-center text-muted">在此添加基础版 / 专业版 / 企业版</div>
+    </div>
+  </section>
+  <section class="container pb-5">
+    <h3 class="h5 mb-3">订阅更新（表单练习）</h3>
+      <!-- TODO: form 含 email 输入 + 提交按钮 -->
+    <form class="row g-2 max-w-400">
+      <div class="col-md-8">
+        <input type="email" class="form-control" placeholder="your@email.com">
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-primary w-100">订阅</button>
+      </div>
+    </form>
+  </section>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

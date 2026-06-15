@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudNote · 首页</title>
+  <link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/learn/css/custom.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/learn/index.html">CloudNote</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/learn/index.html">学习中心</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/final/index.html">首页</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/final/pricing.html">价格</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/final/dashboard.html">后台</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="bg-primary text-white py-5 text-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold">云端笔记</h1>
+      <p class="lead">安全 · 快速 · 团队协作</p>
+      <a href="/learn/final/pricing.html" class="btn btn-light btn-lg mt-3">查看价格</a>
+    </div>
+  </section>
+  <section class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-4"><div class="card h-100"><div class="card-body text-center"><h5>实时同步</h5><p class="text-muted">多设备即时更新</p></div></div></div>
+      <div class="col-md-4"><div class="card h-100"><div class="card-body text-center"><h5>安全加密</h5><p class="text-muted">数据全程保护</p></div></div></div>
+      <div class="col-md-4"><div class="card h-100"><div class="card-body text-center"><h5>团队协作</h5><p class="text-muted">权限灵活配置</p></div></div></div>
+    </div>
+  </section>
+  <section class="container pb-5">
+    <h2 class="h4 mb-3">常见问题</h2>
+    <div class="accordion" id="faq">
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">如何开始？</button></h2>
+        <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faq"><div class="accordion-body">注册账号即可免费使用基础版。</div></div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2">支持哪些设备？</button></h2>
+        <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faq"><div class="accordion-body">Web、iOS、Android 全平台支持。</div></div>
+      </div>
+    </div>
+  </section>
+  <footer class="text-center py-4 text-muted border-top"><small>Day 7 参考首页 · 可自行修改</small></footer>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

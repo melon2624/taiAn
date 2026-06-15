@@ -1,0 +1,19 @@
+/* Day 2 — 在 day1.css 基础上增加响应式 */
+@import url("day1.css");
+
+/* ============================================================
+   知识点：@media 媒体查询、flex-direction、相对单位
+   ============================================================ */
+
+/* TODO Day2 任务：取消下面注释，让手机端三列变一列 */
+@media (max-width: 768px) {
+  .card-row {
+    flex-direction: column;
+    padding: 24px 16px;
+  }
+
+  .site-nav a {
+    margin-left: 8px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>前端学习中心</title>
+  <link href="/learn/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/learn/css/custom.css" rel="stylesheet">
+</head>
+<body>
+  <div class="learn-banner">泰安项目 · 前端学习 | <code>http://localhost:9005/taian/learn</code></div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/learn/index.html">CloudNote 学习</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/learn/react/index.html">React 路线</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/react/admin.html">React 管理系统</a></li>
+          <li class="nav-item"><a class="nav-link" href="/taian/price">业务：价格页</a></li>
+          <li class="nav-item"><a class="nav-link" href="/taian/updatePrice">业务：更新价格</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="bg-primary text-white py-5 text-center">
+    <div class="container">
+      <h1 class="display-5 fw-bold">前端学习路线：CSS 到 React 管理系统</h1>
+      <p class="lead">先理解页面和样式，再用 React 写可交互的后台页面。</p>
+    </div>
+  </header>
+  <main class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4"><div class="card h-100 border-primary"><div class="card-header bg-primary text-white fw-bold">Day 1 · 纯 CSS</div><div class="card-body"><p class="small text-muted">Flex · 盒模型 · 选择器</p><a href="/learn/day1/practice.html" class="btn btn-primary btn-sm">开始练习</a></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-header fw-bold">Day 2 · 响应式</div><div class="card-body"><p class="small text-muted">@media · viewport</p><a href="/learn/day2/responsive.html" class="btn btn-outline-primary btn-sm">开始练习</a></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-header fw-bold">Day 3 · Bootstrap</div><div class="card-body"><p class="small text-muted">Navbar · Hero</p><a href="/learn/day3/index.html" class="btn btn-outline-primary btn-sm">开始练习</a></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-header fw-bold">Day 4 · 栅格 + Card</div><div class="card-body"><p class="small text-muted">row/col · card</p><a href="/learn/day4/features.html" class="btn btn-outline-primary btn-sm">开始练习</a></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-header fw-bold">Day 5 · 表单 + 价格</div><div class="card-body"><p class="small text-muted">form · badge</p><a href="/learn/day5/pricing.html" class="btn btn-outline-primary btn-sm">开始练习</a></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-header fw-bold">Day 6 · 后台布局</div><div class="card-body"><p class="small text-muted">table · sidebar</p><a href="/learn/day6/dashboard.html" class="btn btn-outline-primary btn-sm">开始练习</a></div></div></div>
+    </div>
+    <section class="mt-5 p-4 bg-light rounded">
+      <h2 class="h4">React 阶段：从组件到管理系统</h2>
+      <p class="text-muted">面向你的目标：能用 React 写列表、表单、筛选、状态更新、后台布局，最后接 Spring Boot API。</p>
+      <a href="/learn/react/index.html" class="btn btn-success btn-sm me-2">学习路线</a>
+      <a href="/learn/react/stage1.html" class="btn btn-outline-success btn-sm me-2">阶段一</a>
+      <a href="/learn/react/stage2.html" class="btn btn-outline-success btn-sm me-2">阶段二</a>
+      <a href="/learn/react/admin.html" class="btn btn-success btn-sm me-2">打开 React 管理系统</a>
+      <a href="/learn/final/dashboard.html" class="btn btn-outline-success btn-sm">Bootstrap 后台参考</a>
+    </section>
+  </main>
+  <footer class="text-center py-4 text-muted border-top"><small>业务页面不受影响</small></footer>
+  <script src="/learn/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

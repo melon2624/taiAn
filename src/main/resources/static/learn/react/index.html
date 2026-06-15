@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React 学习路线</title>
+  <link href="/learn/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="/learn/css/custom.css" rel="stylesheet">
+  <link href="/learn/css/react-learn.css" rel="stylesheet">
+</head>
+<body>
+  <div class="learn-banner">React 学习路线 · 先会写，再写稳，最后走向商业项目</div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/learn/index.html">CloudNote 学习</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/learn/index.html">学习中心</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/learn/react/index.html">React 路线</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/react/stage1.html">阶段一</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/react/stage2.html">阶段二</a></li>
+          <li class="nav-item"><a class="nav-link" href="/learn/react/admin.html">练习项目</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-primary text-white py-5">
+    <div class="container">
+      <p class="text-uppercase small mb-2">React Roadmap</p>
+      <h1 class="display-5 fw-bold">从零学 React，到能写管理系统</h1>
+      <p class="lead mb-0">你已经有 HTML、CSS、JavaScript 基础，所以路线会直接围绕后台系统常见功能展开。</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <section class="row g-4">
+      <div class="col-lg-4">
+        <div class="stage-card h-100">
+          <div class="stage-label">阶段一</div>
+          <h2 class="h4">React 基础入门</h2>
+          <p class="text-muted">目标是看懂 JSX、会拆组件、会用状态、会写事件、会渲染列表和表单。</p>
+          <ul class="small text-muted">
+            <li>组件、props、children</li>
+            <li>useState、事件处理</li>
+            <li>map/filter、条件渲染</li>
+            <li>受控表单和简单校验</li>
+          </ul>
+          <a class="btn btn-primary btn-sm" href="/learn/react/stage1.html">进入阶段一</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="stage-card h-100 stage-card-focus">
+          <div class="stage-label">阶段二</div>
+          <h2 class="h4">管理系统实战</h2>
+          <p class="text-muted">目标是能做一个常见后台页面：布局、列表、搜索、筛选、新增、删除、接口思维。</p>
+          <ul class="small text-muted">
+            <li>后台布局和页面结构</li>
+            <li>表格、工具栏、统计卡片</li>
+            <li>CRUD 交互和加载状态</li>
+            <li>组件拆分与数据流</li>
+          </ul>
+          <a class="btn btn-success btn-sm" href="/learn/react/stage2.html">进入阶段二</a>
+          <a class="btn btn-outline-success btn-sm ms-2" href="/learn/react/admin.html">打开练习项目</a>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="stage-card h-100">
+          <div class="stage-label">阶段三</div>
+          <h2 class="h4">商业项目能力</h2>
+          <p class="text-muted">先不急着学，作为后续升级路线：工程化、路由、权限、接口封装、部署和规范。</p>
+          <ul class="small text-muted">
+            <li>Vite、React Router</li>
+            <li>登录、权限、菜单</li>
+            <li>接口封装、错误处理</li>
+            <li>打包部署与项目规范</li>
+          </ul>
+          <a class="btn btn-outline-primary btn-sm" href="/learn/react/stage3.html">先看看后续方向</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-5 p-4 bg-white border rounded">
+      <h2 class="h4">你应该怎么学</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h3 class="h6">学习顺序</h3>
+          <ol class="mb-0">
+            <li>先读阶段一，每学一个点就去改一次练习项目。</li>
+            <li>阶段二开始按管理系统功能拆：布局、列表、表单、筛选、删除。</li>
+            <li>暂时不要急着上脚手架，先把 React 的“数据驱动页面”想明白。</li>
+            <li>阶段二完成后，再进入 Vite、Router、接口封装这些商业项目能力。</li>
+          </ol>
+        </div>
+        <div class="col-md-6">
+          <h3 class="h6">老手经验</h3>
+          <ul class="mb-0">
+            <li>React 最难的不是语法，是想清楚“数据放哪里，谁改数据”。</li>
+            <li>页面先写死，再抽组件，再加状态，比一开始就设计抽象更稳。</li>
+            <li>表单、表格、筛选、分页是后台系统的基本功，重复练很值。</li>
+            <li>看到报错先读第一行和组件名，React 报错通常比你想象的诚实。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/learn/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>
