@@ -95,6 +95,9 @@
 
 ## 4. 阶段 1：JavaScript 夯实（3～4 周）
 
+> **配套实战文档（建议先走这条）：** [javascript-learn.md](./javascript-learn.md) — 7 天 Demo + 逐段讲解 `price.html` / `updatePrice.html`  
+> 入口：http://localhost:9005/taian/learn/js
+
 > 你项目里 `price.html`、`updatePrice.html` 已有 `fetch`，说明接触过 JS。  
 > 这一阶段是 **从「能抄」到「能写、能改、能排错」**。
 

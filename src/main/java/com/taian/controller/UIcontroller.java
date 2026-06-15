@@ -23,4 +23,10 @@ public class UIcontroller {
     public String toLearnHub() {
         return "forward:/learn/index.html";
     }
+
+    /** JavaScript 学习中心入口 */
+    @GetMapping("/learn/js")
+    public String toJsLearnHub() {
+        return "forward:/learn/js/index.html";
+    }
 }
